@@ -1,7 +1,7 @@
 # react-demo
 Sample application for bootcamp students
 
-#branch
+## branch
 * redux
 * react-redux
 * redux-middleware
