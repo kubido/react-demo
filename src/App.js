@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
 import store from './stores'
 import userStore from './mobx_stores/User'
@@ -17,7 +18,7 @@ class App extends Component {
     return (
       <Router>
         <div id="container">
-          <ul class="horizontal">
+          <ul className="horizontal">
             <li><Link to='/redux' > Redux </Link></li>
             <li><Link to='/mobx' > Mobx </Link></li>
           </ul>
@@ -30,12 +31,33 @@ class App extends Component {
 }
 
 
-const Mobx = (props) => (
-  <div>
-    <h1> Mobx </h1>
-    <h2>{JSON.stringify(userStore.users)}</h2>
-  </div>
-)
+@observer class Mobx extends Component {
+  state = {
+    name: ''
+  }
+
+  handleUserInput(){
+    userStore.addUser(({
+      name: this.state.name,
+      age: Math.ceil(Math.random() * 100)
+    }))
+  }
+
+  render(){
+    return(
+      <div>
+        <h1> Mobx </h1>
+        <input type="text" onChange={ (e) => this.setState({ name: e.target.value })}/>
+        <button onClick={ () => this.handleUserInput() } > ADD </button>
+        <ul>
+          { userStore.users.map( user => {
+            return <h2>{ user.name } ({ user.age })</h2>
+          })}
+        </ul>
+      </div>
+    )
+  }
+}
 
 class Redux extends Component {
 
