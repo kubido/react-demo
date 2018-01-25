@@ -23,8 +23,8 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
+      <Provider store={store} >
+        <div className="App" style={styles.container}>
           <h1>Counter: {this.state.counter} </h1>
         <button onClick={ () => store.dispatch(increment_action(10))} >INC</button>
       <button onClick={ () => store.dispatch({ type: 'DECREMENT' })}>DEC</button>
@@ -33,6 +33,13 @@ class App extends Component {
     </div>
   </Provider>
     );
+  }
+}
+
+const styles = {
+  container: {
+    width: '960px',
+    margin: '0 auto'
   }
 }
 

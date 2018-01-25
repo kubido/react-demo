@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { add_user } from '../actions/userAction'
+import { add_user, fetch_users_from_api } from '../actions/userAction'
 
 class User extends Component {
   constructor(){
@@ -12,14 +12,19 @@ class User extends Component {
 
   }
 
+  componentDidMount(){
+    this.props.fetchUsers()
+  }
+
   render(){
     return(
       <div>
         <input type="text" onChange={ (e) => this.setState({name: e.target.value })}/>
-        <button onClick={ () => this.props.tambahUser(this.state.name) }> ADD USER </button>
+        <button onClick={ () => this.props.tambahUser({name: this.state.name}) }> ADD USER </button>
+        <h1>Users from API</h1>
         <ul>
-          { this.props.listUser.map( (user_name,idx) => {
-            return <li key={idx} >{ user_name }</li>
+          { this.props.listUser.map( (user,idx) => {
+            return <li key={idx} >{ user.name }</li>
           })}
         </ul>
       </div>
@@ -36,7 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    tambahUser: (username) => dispatch(add_user(username))
+    tambahUser: (username) => dispatch(add_user(username)),
+    fetchUsers: () => dispatch(fetch_users_from_api())
   }
 }
 
