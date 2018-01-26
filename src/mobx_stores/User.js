@@ -5,7 +5,7 @@ class UserStore{
     {name: 'John', age: 40}
   ]
 
-  @computed get countUsers(){
+  @computed get count(){
     return this.users.length
   }
 

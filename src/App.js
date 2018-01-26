@@ -46,7 +46,7 @@ class App extends Component {
   render(){
     return(
       <div>
-        <h1> Mobx </h1>
+        <h1> Mobx - Users count : { userStore.count } </h1>
         <input type="text" onChange={ (e) => this.setState({ name: e.target.value })}/>
         <button onClick={ () => this.handleUserInput() } > ADD </button>
         <ul>
