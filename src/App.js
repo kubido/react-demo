@@ -1,47 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 
-import store from './stores'
-import { increment_action } from './actions/counterAction'
-import { add_user } from './actions/userAction'
+import { Provider } from 'react-redux'
 
-class App extends Component {
-  constructor(){
-    super()
-    this.state = {
-      title: "Hello world",
-      counter: store.getState().counterReducer.counter,
-      name: '',
-      users: store.getState().userReducer.users
-    }
+import store from './store'
 
-    store.subscribe( () => {
-      this.setState({
-        counter: store.getState().counterReducer.counter,
-        users: store.getState().userReducer.users
-      })
-    })
-  }
+import {
+  Home,
+  DetailTodo
+} from './pages'
 
 
-  render() {
-    return (
-      <div className="App">
-          <h1>Counter: {this.state.counter} </h1>
-          <button onClick={ () => store.dispatch(increment_action(10))} >INC</button>
-          <button onClick={ () => store.dispatch({ type: 'DECREMENT' })}>DEC</button>
-          <hr/>
-          <input type="text" onChange={ (e) => this.setState({name: e.target.value })}/>
-          <button onClick={ () => store.dispatch(add_user(this.state.name))}> ADD USER </button>
-          <ul>
-            { this.state.users.map( (user_name,idx) => {
-              return <li key={idx} >{ user_name }</li>
-            })}
-          </ul>
-      </div>
-    );
-  }
-}
+// HOC = High Order Component
+const App = () => (
+  <Provider store={store}>
 
-export default App;
+    <Router>
+      <Switch>
+        <div  style={{margin: '2em auto', width: '700px'}}>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/todo/:todoId">
+            <DetailTodo/>
+          </Route>
+        </div>
+      </Switch>
+    </Router>
+
+  </Provider>
+
+)
+export default App

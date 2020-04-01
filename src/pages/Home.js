@@ -1,0 +1,40 @@
+import React, { useState } from 'react'
+import {
+  Link
+} from 'react-router-dom'
+import { 
+  useSelector,
+  useDispatch
+} from 'react-redux'
+
+import {
+  addTodo 
+} from '../store/actions'
+
+const Home = () => {
+
+  const [text, setText] = useState('')
+  const todos = useSelector( state => state.listPekerjaan.todos)
+  const dispatch = useDispatch()
+
+
+  return (
+    <div>
+      <input onChange={ (e) => setText(e.target.value)} />
+      <button onClick={ () => dispatch( addTodo(text) ) }> Add </button>
+      { todos.map( (todo, idx) => (
+        <div  key={idx} >
+          <Link 
+           
+            to={`/todo/${todo.id}`}
+          > 
+            {todo.text}
+          </Link>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default Home
+
