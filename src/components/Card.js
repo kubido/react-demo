@@ -1,12 +1,12 @@
 import React from 'react'
 
 
-class Card extends React.Component{
+class Card extends React.Component {
 
-  render(){
-    return(
-      <div style={ styles.card }>
-        <h1> { this.props.title } </h1>
+  render() {
+    return (
+      <div style={styles.card}>
+        <h1> {this.props.title} </h1>
         <p> Description </p>
       </div>
     )
@@ -14,8 +14,8 @@ class Card extends React.Component{
 }
 
 const styles = {
-  card: { 
-    marginBottom: "10px", 
+  card: {
+    marginBottom: "10px",
     border: '1px solid red'
   }
 }

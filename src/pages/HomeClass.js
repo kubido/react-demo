@@ -8,30 +8,35 @@ import {
 } from 'react-redux'
 
 import {
-  addTodo 
+  addTodo
 } from '../store/actions'
 
 class Home extends React.Component {
 
-  constructor(){
+  constructor() {
     super()
     this.state = {
       text: ''
     }
   }
-  
-  render(){
-    return(
-      <div> 
-        <input onChange={ (e) => this.setState({ text: e.target.value})} />
 
-        <button onClick={ () => this.props.tambah(this.state.text) }> Add </button>
-          { this.props.tugas.map( (todo, idx) => (
-          <div  key={idx} >
-            <Link 
-            
+  render() {
+    return (
+      <div>
+        <input onChange={(e) => this.setState({ text: e.target.value })} />
+
+        <h1 data-testid="homepage-title"> homepage </h1>
+        <h1> homepage 1 </h1>
+        <h1> homepage 2 </h1>
+        <h1> homepage 3 </h1>
+
+        <button onClick={() => this.props.tambah(this.state.text)}> Add </button>
+        {this.props.tugas.map((todo, idx) => (
+          <div key={idx} >
+            <Link
+
               to={`/todo/${todo.id}`}
-            > 
+            >
               {todo.text}
             </Link>
           </div>
@@ -49,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    tambah: ( text ) => dispatch( addTodo(text) )
+    tambah: (text) => dispatch(addTodo(text))
   }
 }
 

@@ -8,29 +8,41 @@ import {
 import { Provider } from 'react-redux'
 
 import store from './store'
+import Navbar from './components/Navbar'
 
 import {
   Home,
-  DetailTodo
+  DetailTodo,
+  Users
 } from './pages'
 
+import './index.css'
+
+export const AppRouter = () => (
+  <Provider store={store}>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/users" component={Users} />
+      <Route exact path="/todo/:todoId">
+        <DetailTodo />
+      </Route>
+    </Switch>
+  </Provider >
+
+
+)
 
 // HOC = High Order Component
 const App = () => (
-  <Provider store={store}>
 
+  <div style={{ margin: '2em auto', width: '700px' }}>
     <Router>
-      <Switch>
-        <div  style={{margin: '2em auto', width: '700px'}}>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/todo/:todoId">
-            <DetailTodo/>
-          </Route>
-        </div>
-      </Switch>
-    </Router>
+      <Navbar />
+      <AppRouter />
 
-  </Provider>
+    </Router>
+  </div>
+
 
 )
 export default App
