@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^1.1.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.1",
+    "react-scripts": "^1.1.5",
     "redux": "^3.7.2"
   },
   "scripts": {
@@ -20,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/ccx1010sky/react-demo.git"
   },
-  "author": "",
+  "author": "nick",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ccx1010sky/react-demo/issues"
