@@ -4,22 +4,21 @@ import {
   Link
 } from 'react-router-dom'
 
-import { 
+import {
   useSelector
 } from 'react-redux'
 
 const DetailTodo = () => {
   const params = useParams()
 
-  const todos = useSelector( state => state.listPekerjaan.todos)
-  console.log(todos);
-  
-  const todo = todos.find(t => t.id == params.todoId)
+  const todos = useSelector(state => state.listPekerjaan.todos)
+  const todo = todos.find(t => t.id === +params.todoId)
+  console.log(todos, params, todo);
 
-  return(
+  return (
     <div>
       <Link to="/"> {`<`} Home </Link>
-      <h1>{ todo.text }</h1>
+      <h1>{todo.text}</h1>
     </div>
   )
 }

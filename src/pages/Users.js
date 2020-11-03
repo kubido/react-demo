@@ -9,7 +9,7 @@ import {
   fetchUsers
 } from '../store/actions'
 
-export default () => {
+const User = () => {
   const users = useSelector(state => state.UsersReducer.users)
   const dispatch = useDispatch()
 
@@ -18,11 +18,19 @@ export default () => {
   }, [])
 
   return (
-    <div>
-      <h1> Users page</h1>
-      {users.map(u => (
-        <p key={u.id}>{u.id}. {u.name}</p>
-      ))}
+    <div className="rounded-md my-5 p-5 border border-gray-300">
+      <h1 className="text-3xl mb-3"> Users</h1>
+      <ol className="list-decimal ml-8">
+
+        {users.length ?
+          users.map(u => (
+            <li key={u.id}>{u.name}</li>
+          ))
+          :
+          <li> Loading... </li>
+        }
+      </ol>
     </div>
   )
 }
+export default User

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -21,11 +21,11 @@ import './assets/main.css'
 export const AppRouter = () => (
   <Provider store={store}>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/users" component={Users} />
+      <Route exact path="/users" component={Users} />
       <Route exact path="/todo/:todoId">
         <DetailTodo />
       </Route>
+      <Route exact path="/" component={Home} />
     </Switch>
   </Provider >
 
